@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Script to prep the BeagleBoneBlack - Linux 4.1 Kernel with the PRU libs
+# Currently test this with image https://debian.beagleboard.org/images/bone-debian-8.4-lxqt-4gb-armhf-2016-05-13-4gb.img.xz
+# which is the latest on beagleboard.org
 
 apt-get update
 apt-get install gcc-pru
