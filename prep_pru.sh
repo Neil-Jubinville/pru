@@ -23,8 +23,8 @@ git clone https://github.com/dinuxbg/pru-gcc-examples.git
 git clone https://github.com/beagleboard/bb.org-overlays.git
 
 #build the overlays
-git clone https://github.com/beagleboard/bb.org-overlays.git
-cd bb.org-overlays
-./dtc-overlay.sh
-./install.sh
+#git clone https://github.com/beagleboard/bb.org-overlays.git
+#cd bb.org-overlays
+#./dtc-overlay.sh
+#./install.sh
 
