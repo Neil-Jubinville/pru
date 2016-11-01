@@ -7,7 +7,7 @@
 # which is the latest on beagleboard.org
 
 #update the kernel
-cd /opt/scripts/tools && ./update_kernel.sh
+cd /opt/scripts/tools && git pull && ./update_kernel.sh
 
 # decompile the base device tree, note that after updating your kenel you will likely have an extra folder for the new kernel
 # dtbs, at the time of writing this script my Jessie was updating to 4.4.27 so change it to match yours in the path.
