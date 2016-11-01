@@ -13,8 +13,8 @@ cp /boot/dtbs/4.4.27-ti-r62/am335x-boneblack.dtb /boot/dtbs/4.4.27-ti-r62/am335x
 dtc -I dtb -O dts /boot/dtbs/4.4.27-ti-r62/am335x-boneblack.dtb > /boot/dtbs/4.4.27-ti-r62/am335x-boneblack.dts_orig
 
 apt-get update
-apt-get install gcc-pru
-apt-get install libelf-dev
+apt-get install -y gcc-pru
+apt-get install -y libelf-dev
 
 # get interesting / supporting repos
 git clone https://github.com/dinuxbg/pru-gcc-examples.git
