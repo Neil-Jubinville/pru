@@ -25,15 +25,13 @@ export DTB=~/dtb-rebuilder/src/arm
 sed -i -e 's/\/\* #include \"am33xx-pruss-rproc.dtsi\" \*\//#include \"am33xx-pruss-rproc.dtsi\"/'   $DTB/am335x-boneblack-emmc-overlay.dts
 sed -i -e 's/#dtb=/dtb=am335x-boneblack-emmc-overlay.dtb/'  /boot/uEnv.txt
 
+$DTB/make 
+$DTB/make install
+
 # get interesting / supporting repos
 git clone https://github.com/dinuxbg/pru-gcc-examples.git
 git clone https://github.com/beagleboard/bb.org-overlays.git
 
-#build the overlays
-#git clone https://github.com/beagleboard/bb.org-overlays.git
-#cd bb.org-overlays
-#./dtc-overlay.sh
-#./install.sh
-
+#reboot
 
 
