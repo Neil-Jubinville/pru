@@ -24,7 +24,7 @@ echo "export slots=/sys/devices/platform/bone_capemgr/slots" >> ~/.bashrc
 git clone https://github.com/RobertCNelson/dtb-rebuilder 
 export DTB=~/dtb-rebuilder/src/arm
 sed -i -e 's/\/\* #include \"am33xx-pruss-uio.dtsi\" \*\//#include \"am33xx-pruss-uio.dtsi\"/'   $DTB/am335x-boneblack.dts
-sed -i -e 's/#dtb=/dtb=am335x-boneblack-emmc-overlay.dtb/'  /boot/uEnv.txt
+#sed -i -e 's/#dtb=/dtb=am335x-boneblack-emmc-overlay.dtb/'  /boot/uEnv.txt
 
 $DTB/make 
 $DTB/make install
