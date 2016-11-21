@@ -19,7 +19,7 @@ Modified:  Neil Jubinville,  added bone-pinmux-helper and extra wrapper
 	compatible = "ti,beaglebone", "ti,beaglebone-black";
 
 	/* identification */
-	part-number = "BB-BONE-PRU";
+	part-number = "BB-BONE-PRU-00A0";
 	version = "00A0";
 
 	/* state the resources this cape uses */
