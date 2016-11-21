@@ -15,7 +15,7 @@ apt-get install -y libelf-dev
 cd /opt/scripts/tools && git pull && ./update_kernel.sh --kernel 4.4.27-ti-r62
 
 
-export slots=/sys/devices/platform/bone_capemgr/slots
+echo "export slots=/sys/devices/platform/bone_capemgr/slots" >> ~/.bashrc
 #/opt/scripts/tools# ./update_kernel.sh --kernel 4.4.27-ti-r62  working kernel version.
 #as per rnelson rebuild the dtbs with pru support as out ofthe box it is now longer supported, 
 # the user needs to choose either uio_pruss or remote proc to enable otherwise it is in the blacklist.
