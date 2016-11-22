@@ -57,7 +57,7 @@ echo "/root/dtb-rebuilder/ && make install"  >> /etc/rc.local
 
 echo "modprobe uio_pruss" >> /etc/rc.local
 echo "config-pin overlay BB-BONE-PRU" >> /etc/rc.local
-echo "cd ~/pru/pru-gcc-examples/blinking-led/host-uio && ./out/pload ../pru/out/pru-core0.elf ../pru/out/pru-core1.elf &" >>  /etc/rc.local
+echo "cd /root/pru/pru-gcc-examples/blinking-led/host-uio && ./out/pload ../pru/out/pru-core0.elf ../pru/out/pru-core1.elf &" >>  /etc/rc.local
 
 
 reboot
