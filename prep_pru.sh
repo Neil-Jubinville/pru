@@ -51,7 +51,9 @@ cd ~/pru/pru-gcc-examples/blinking-led/pru && make
 cd ~/pru/pru-gcc-examples/blinking-led/host-uio && make
 
 # Load the overlay for the example and run the example on startup.  Note you need an LED in I/O P9.27 for some blinky action.
+sed 's/exit 0/ /' /etc/rc.local
 echo "config-pin overlay BB-BONE-PRU" >> /etc/rc.local
-echo "cd ~/pru/pru-gcc-examples/blinking-led/host-uio && ./out/pload ../pru/out/pru-core0.elf ../pru/out/pru-core1.elf" >> echo "config-pin overlay BB-BONE-PRU" >> /etc/rc.local
+echo "cd ~/pru/pru-gcc-examples/blinking-led/host-uio && ./out/pload ../pru/out/pru-core0.elf ../pru/out/pru-core1.elf" 
+
 
 reboot
