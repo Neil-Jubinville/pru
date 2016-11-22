@@ -26,12 +26,15 @@ export DTB=~/dtb-rebuilder/src/arm
 sed -i -e 's/\/\* #include \"am33xx-pruss-uio.dtsi\" \*\//#include \"am33xx-pruss-uio.dtsi\"/'   $DTB/am335x-boneblack.dts
 #sed -i -e 's/#dtb=/dtb=am335x-boneblack-emmc-overlay.dtb/'  /boot/uEnv.txt
 
-$DTB/make 
-$DTB/make install
+cd ~/dtb-rebuilder
+make
+make install
 
 #comment out the universal cape entry  for now... it causes problems with pru pins
 sed -i -e 's/cmdline=coherent_pool=1M quiet cape_universal=enable/#cmdline=coherent_pool=1M quiet cape_universal=enable/' /boot/uEnv.txt
 
+
+cd ~/pru
 #build our testing overlay
 dtc -O dtb -o /lib/firmware/BB-BONE-PRU-00A0.dtbo -b 0 -@ ~/pru/BB-BONE-PRU-00A0.dts
 
@@ -39,14 +42,16 @@ dtc -O dtb -o /lib/firmware/BB-BONE-PRU-00A0.dtbo -b 0 -@ ~/pru/BB-BONE-PRU-00A0
 git clone https://github.com/dinuxbg/pru-gcc-examples.git
 git clone https://github.com/beagleboard/bb.org-overlays.git
 
-reboot  
 # after reboot do lsmod to make sure the uio_pruss module is running.
 # after rebooting you can load the overlay with
-config-pin overlay BB-BONE-PRU
+
 
 # Run the example and see if your led is blinking
 cd ~/pru/pru-gcc-examples/blinking-led/pru && make 
 cd ~/pru/pru-gcc-examples/blinking-led/host-uio && make
 
-# finally run it
-cd ~/pru/pru-gcc-examples/blinking-led/host-uio && ./out/pload ../pru/out/pru-core0.elf ../pru/out/pru-core1.elf
+# Load the overlay for the example and run the example on startup.  Note you need an LED in I/O P9.27 for some blinky action.
+echo "config-pin overlay BB-BONE-PRU" >> /etc/rc.local
+echo "cd ~/pru/pru-gcc-examples/blinking-led/host-uio && ./out/pload ../pru/out/pru-core0.elf ../pru/out/pru-core1.elf" >> echo "config-pin overlay BB-BONE-PRU" >> /etc/rc.local
+
+reboot
