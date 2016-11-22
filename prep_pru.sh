@@ -26,9 +26,7 @@ export DTB=~/dtb-rebuilder/src/arm
 sed -i -e 's/\/\* #include \"am33xx-pruss-uio.dtsi\" \*\//#include \"am33xx-pruss-uio.dtsi\"/'   $DTB/am335x-boneblack.dts
 #sed -i -e 's/#dtb=/dtb=am335x-boneblack-emmc-overlay.dtb/'  /boot/uEnv.txt
 
-cd ~/dtb-rebuilder
-make
-make install
+
 
 #comment out the universal cape entry  for now... it causes problems with pru pins
 sed -i -e 's/cmdline=coherent_pool=1M quiet cape_universal=enable/#cmdline=coherent_pool=1M quiet cape_universal=enable/' /boot/uEnv.txt
@@ -52,9 +50,17 @@ cd ~/pru/pru-gcc-examples/blinking-led/host-uio && make
 
 # Load the overlay for the example and run the example on startup.  Note you need an LED in I/O P9.27 for some blinky action.
 sed -i -e 's/exit 0/ /' /etc/rc.local
+
+# unfortunately these need to run after the reboot or the new kernel won't get referenced , may a command line var can be set for make
+echo "cd ~/dtb-rebuilder" >> /etc/rc.local
+echo "make"  >> /etc/rc.local
+echo "make install"  >> /etc/rc.local
+
 echo "modprobe uio_pruss" >> /etc/rc.local
 echo "config-pin overlay BB-BONE-PRU" >> /etc/rc.local
 echo "cd ~/pru/pru-gcc-examples/blinking-led/host-uio && ./out/pload ../pru/out/pru-core0.elf ../pru/out/pru-core1.elf &" >>  /etc/rc.local
 
 
 reboot
+# oh and you will need to reboot once more after this.... sry :) 
+# first reboot is for the kernel dtb build, second reboot handles the loading of it.
