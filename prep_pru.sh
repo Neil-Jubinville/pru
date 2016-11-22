@@ -25,7 +25,7 @@ cd ~/ && git clone https://github.com/RobertCNelson/dtb-rebuilder
 export DTB=~/dtb-rebuilder/src/arm
 sed -i -e 's/\/\* #include \"am33xx-pruss-uio.dtsi\" \*\//#include \"am33xx-pruss-uio.dtsi\"/'   $DTB/am335x-boneblack.dts
 #sed -i -e 's/#dtb=/dtb=am335x-boneblack-emmc-overlay.dtb/'  /boot/uEnv.txt
-cd /root/dtb-rebuilder/ && make
+#cd /root/dtb-rebuilder/ && make
 
 
 #comment out the universal cape entry  for now... it causes problems with pru pins
@@ -51,7 +51,7 @@ cd ~/pru/pru-gcc-examples/blinking-led/host-uio && make
 sed -i -e 's/exit 0/ /' /etc/rc.local
 
 # unfortunately these need to run after the reboot or the new kernel won't get referenced , may a command line var can be set for make
-
+echo "cd /root/dtb-rebuilder/ && make "  >> /etc/rc.local
 echo "cd /root/dtb-rebuilder/ && make install"  >> /etc/rc.local
 
 
