@@ -21,7 +21,7 @@ echo "export slots=/sys/devices/platform/bone_capemgr/slots" >> ~/.bashrc
 # the user needs to choose either uio_pruss or remote proc to enable otherwise it is not enabled.  Strange that no pru support is enabled by default.
 
 #Essentially you need to edit one of the dts for the base dtb.  Hear we edit the basic default dtb.
-git clone https://github.com/RobertCNelson/dtb-rebuilder 
+cd ~/ && git clone https://github.com/RobertCNelson/dtb-rebuilder 
 export DTB=~/dtb-rebuilder/src/arm
 sed -i -e 's/\/\* #include \"am33xx-pruss-uio.dtsi\" \*\//#include \"am33xx-pruss-uio.dtsi\"/'   $DTB/am335x-boneblack.dts
 #sed -i -e 's/#dtb=/dtb=am335x-boneblack-emmc-overlay.dtb/'  /boot/uEnv.txt
